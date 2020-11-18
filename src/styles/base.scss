@@ -1,0 +1,14 @@
+@import 'config.scss';
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  font-family: $poppins;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
