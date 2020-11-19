@@ -5,3 +5,45 @@ $light: 300;
 $regular: 400;
 $medium: 500;
 $semi-bold: 600;
+
+@mixin large($weight: $light) {
+  font-family: $poppins;
+  letter-spacing: 0.15px;
+  font-size: 1.1875rem;
+  font-weight: $weight;
+}
+
+@mixin caption($weight: $regular) {
+  font-family: $poppins;
+  letter-spacing: 0.4px;
+  font-size: 0.75rem;
+  font-weight: $weight;
+}
+
+@mixin small($weight: $light) {
+  font-family: $poppins;
+  letter-spacing: 0.25px;
+  font-size: 0.875rem;
+  font-weight: $weight;
+}
+
+@mixin body1($weight: $regular) {
+  font-family: $poppins;
+  letter-spacing: 0.5px;
+  font-size: 1rem;
+  font-weight: $weight;
+}
+
+@mixin title2($weight: $regular) {
+  font-family: $poppins;
+  letter-spacing: 0.25px;
+  font-size: 2rem;
+  font-weight: $weight;
+}
+
+@mixin h6($weight: $medium) {
+  font-family: $poppins;
+  letter-spacing: 0.15px;
+  font-size: 1.25rem;
+  font-weight: $weight;
+}

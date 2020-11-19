@@ -1,0 +1,27 @@
+@import '../../styles/config.scss';
+
+.topbar {
+  @include flexbox;
+
+  width: 100%;
+  height: 4rem;
+  background-color: $accent-color;
+
+  &_Container {
+    @include flexbox($justify: space-between);
+
+    width: 1184px;
+    height: 100%;
+  }
+}
+
+.userContainer {
+  @include flexbox;
+}
+
+.userDisplayName {
+  @include small($medium);
+
+  color: white;
+  margin-right: 1rem;
+}

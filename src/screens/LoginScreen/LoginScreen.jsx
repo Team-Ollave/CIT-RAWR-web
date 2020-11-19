@@ -1,15 +1,66 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
+import { userTypes } from '../../constants';
 import styles from './styles.module.scss';
+
+const departmentAccount = {
+  username: 'dept',
+  password: '123',
+  userType: userTypes.DEPARTMENT,
+};
+const imdcAccount = {
+  username: 'imdc',
+  password: '123',
+  userType: userTypes.IMDC,
+};
+const presAccount = {
+  username: 'pres',
+  password: '123',
+  userType: userTypes.PRESIDENT,
+};
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState('');
+  const { setUser } = useContext(UserContext);
+  const history = useHistory();
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+
+    if (
+      username === departmentAccount.username &&
+      password === departmentAccount.password
+    ) {
+      history.push('/admin/dashboard');
+    } else if (
+      username === imdcAccount.username &&
+      password === imdcAccount.password
+    ) {
+      history.push('/imdc/dashboard');
+    } else if (
+      username === presAccount.username &&
+      password === presAccount.password
+    ) {
+      setUser(presAccount);
+      // history.push('/reservations');
+    }
+
+    setErrors('incorrect username or password');
+  };
 
   return (
     <div className={styles.container}>
-      <div className={styles.loginFormContainer}>
+      <form
+        method="post"
+        className={styles.loginFormContainer}
+        onSubmit={handleOnSubmit}
+      >
         <header>Sign in</header>
         <div className={styles.bodyContainer}>
+          {errors && <p>{errors}</p>}
           <input
             type="text"
             name="username"
@@ -23,11 +74,11 @@ export default function LoginScreen() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div>
-            <button>Forgot your password?</button>
+            <Link to="/imdc">Forgot your password?</Link>
             <button>Sign In</button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
