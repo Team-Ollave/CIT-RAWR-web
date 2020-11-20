@@ -1,8 +1,10 @@
 import styles from './styles.module.scss';
 import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/Add';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { useState } from 'react';
 import NavItem from './NavItem';
+import ReservationCard from '../../components/ReservationCard';
 
 export default function ReservationsScreen() {
   const [currentTab, setCurrentTab] = useState('pending');
@@ -57,7 +59,40 @@ export default function ReservationsScreen() {
               <span className={styles.createButtonLabel}>Create Room</span>
             </button>
           </header>
-          {renderTab(currentTab)}
+          {/* {renderTab(currentTab)} */}
+          <div>
+            <div className={styles.departmentContainer}>
+              <h2 className={styles.departmentName}>
+                College of Computer Studies
+              </h2>
+              <div className={styles.roomContainer}>
+                <div className={styles.roomName}>
+                  <KeyboardArrowDownIcon />
+                  <h4 className={styles.roomNameLabel}>Case Room</h4>
+                </div>
+                <div className={styles.reservationList}>
+                  <ReservationCard
+                    eventName="DSC Weekly Meeting"
+                    eventOrganizer="Jane Doe"
+                    eventStartTime="8:30"
+                    eventEndTime="9:30"
+                  />
+                  <ReservationCard
+                    eventName="DSC Weekly Meeting"
+                    eventOrganizer="Jane Doe"
+                    eventStartTime="8:30"
+                    eventEndTime="9:30"
+                  />
+                  <ReservationCard
+                    eventName="DSC Weekly Meeting"
+                    eventOrganizer="Jane Doe"
+                    eventStartTime="8:30"
+                    eventEndTime="9:30"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </div>

@@ -41,6 +41,13 @@ $semi-bold: 600;
   font-weight: $weight;
 }
 
+@mixin title3($weight: $medium) {
+  font-family: $poppins;
+  letter-spacing: 0;
+  font-size: 1.5rem;
+  font-weight: $weight;
+}
+
 @mixin h6($weight: $medium) {
   font-family: $poppins;
   letter-spacing: 0.15px;

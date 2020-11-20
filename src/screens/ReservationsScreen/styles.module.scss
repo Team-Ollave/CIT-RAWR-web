@@ -71,3 +71,38 @@
     color: white;
   }
 }
+
+.departmentContainer {
+  @include flexbox($direction: column, $align: flex-start);
+
+  row-gap: 1rem;
+}
+
+.departmentName {
+  @include title3;
+}
+
+.roomContainer {
+  @include flexbox($direction: column, $align: flex-start);
+
+  row-gap: 0.75rem;
+  width: 100%;
+}
+
+.roomName {
+  @include flexbox;
+
+  column-gap: 0.5rem;
+}
+
+.roomNameLabel {
+  @include h6($weight: $regular);
+}
+
+.reservationList {
+  @include flexbox($direction: column);
+
+  row-gap: 1rem;
+
+  width: 100%;
+}
