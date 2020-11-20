@@ -5,6 +5,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { useState } from 'react';
 import NavItem from './NavItem';
 import ReservationCard from '../../components/ReservationCard';
+import Accordion from '../../components/Accordion/Accordion';
 
 export default function ReservationsScreen() {
   const [currentTab, setCurrentTab] = useState('pending');
@@ -66,30 +67,32 @@ export default function ReservationsScreen() {
                 College of Computer Studies
               </h2>
               <div className={styles.roomContainer}>
-                <div className={styles.roomName}>
-                  <KeyboardArrowDownIcon />
-                  <h4 className={styles.roomNameLabel}>Case Room</h4>
-                </div>
-                <div className={styles.reservationList}>
-                  <ReservationCard
-                    eventName="DSC Weekly Meeting"
-                    eventOrganizer="Jane Doe"
-                    eventStartTime="8:30"
-                    eventEndTime="9:30"
-                  />
-                  <ReservationCard
-                    eventName="DSC Weekly Meeting"
-                    eventOrganizer="Jane Doe"
-                    eventStartTime="8:30"
-                    eventEndTime="9:30"
-                  />
-                  <ReservationCard
-                    eventName="DSC Weekly Meeting"
-                    eventOrganizer="Jane Doe"
-                    eventStartTime="8:30"
-                    eventEndTime="9:30"
-                  />
-                </div>
+                <Accordion title="Case Room">
+                  <div className={styles.reservationList}>
+                    <ReservationCard
+                      eventName="DSC Weekly Meeting"
+                      eventOrganizer="Jane Doe"
+                      eventStartTime="8:30"
+                      eventEndTime="9:30"
+                    />
+                    <ReservationCard
+                      eventName="DSC Weekly Meeting"
+                      eventOrganizer="Jane Doe"
+                      eventStartTime="8:30"
+                      eventEndTime="9:30"
+                    />
+                  </div>
+                </Accordion>
+                <Accordion title="Case Room">
+                  <div className={styles.reservationList}>
+                    <ReservationCard
+                      eventName="DSC Weekly Meeting"
+                      eventOrganizer="Jane Doe"
+                      eventStartTime="8:30"
+                      eventEndTime="9:30"
+                    />
+                  </div>
+                </Accordion>
               </div>
             </div>
           </div>

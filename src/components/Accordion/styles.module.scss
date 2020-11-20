@@ -1,0 +1,23 @@
+@import '../../styles/config.scss';
+
+.container {
+  @include flexbox;
+
+  column-gap: 0.5rem;
+}
+
+.title {
+  @include h6($weight: $regular);
+  cursor: pointer;
+
+  &::selection {
+    background-color: transparent;
+  }
+}
+
+.accordionBody {
+  overflow: hidden;
+  width: 100%;
+
+  transition: all 200ms ease;
+}
