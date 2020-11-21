@@ -1,6 +1,5 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { UserContext } from '../../App';
 import { userTypes } from '../../constants';
 import styles from './styles.module.scss';
 
@@ -24,7 +23,6 @@ export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState('');
-  const { setUser } = useContext(UserContext);
   const history = useHistory();
 
   const handleOnSubmit = (event) => {
