@@ -1,0 +1,91 @@
+@import '../../styles/config.scss';
+
+.container {
+  @include flexbox($direction: column);
+
+  background-color: white;
+  border-radius: 1.25rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  @include flexbox;
+
+  width: 100%;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid $gray2;
+}
+
+.headerLabel {
+  @include title3($weight: $medium);
+}
+
+.body {
+  @include flexbox($direction: column);
+
+  row-gap: 1rem;
+  padding: 2rem;
+}
+
+.field {
+  @include flexbox($direction: column, $align: flex-start);
+  row-gap: 0.25rem;
+  width: 100%;
+}
+
+.fieldCheckbox {
+  composes: field;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 0.5rem;
+}
+
+.fieldLabel {
+  @include body1;
+}
+
+.fieldInput {
+  @include body1;
+
+  width: 100%;
+  // flex-grow: 1;
+  background-color: $gray0;
+  border: 1px solid $gray2;
+  outline: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  transition: border-color 200ms ease;
+
+  &:focus {
+    border-color: $black;
+  }
+}
+
+.createButton {
+  @include flexbox;
+  align-self: flex-end;
+
+  padding: 0.5rem 1rem;
+  background-color: $accent-color;
+  outline: none;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.buttonLabel {
+  @include body1($medium);
+
+  color: white;
+}
+
+.availableTimeContainer {
+  @include flexbox($justify: space-between);
+
+  column-gap: 1rem;
+  width: 100%;
+}

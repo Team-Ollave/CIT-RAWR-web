@@ -3,20 +3,24 @@ import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/Add';
 import { useState } from 'react';
 import NavItem from './NavItem';
-import ReservationCard from '../../components/ReservationCard';
-import Accordion from '../../components/Accordion/Accordion';
+import Modal from '../../components/Modal/Modal';
+import CreateRoom from '../../components/CreateRoom/CreateRoom';
+import PendingTab from './Tabs/PendingTab';
+import AcceptedTab from './Tabs/AcceptedTab';
+import DeletedTab from './Tabs/DeletedTab';
 
 export default function ReservationsScreen() {
   const [currentTab, setCurrentTab] = useState('pending');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const renderTab = (tab) => {
     switch (currentTab) {
       case 'pending':
-        return <p>pending</p>;
+        return <PendingTab />;
       case 'accepted':
-        return <p>accepted</p>;
+        return <AcceptedTab />;
       case 'deleted':
-        return <p>deleted</p>;
+        return <DeletedTab />;
       default:
         break;
     }
@@ -54,65 +58,20 @@ export default function ReservationsScreen() {
                 Approved by Department, IMDC
               </span>
             </div>
-            <button className={styles.createButton}>
+            <button
+              className={styles.createButton}
+              onClick={() => setIsModalOpen(true)}
+            >
               <AddIcon className={styles.createButtonIcon} fontSize="small" />
               <span className={styles.createButtonLabel}>Create Room</span>
             </button>
           </header>
-          {/* {renderTab(currentTab)} */}
-          <div>
-            <div className={styles.departmentContainer}>
-              <h2 className={styles.departmentName}>
-                College of Computer Studies
-              </h2>
-              <div className={styles.roomContainer}>
-                <Accordion title="Case Room" isActive>
-                  <div className={styles.reservationList}>
-                    <ReservationCard
-                      eventName="DSC Weekly Meeting"
-                      eventOrganizer="Jane Doe"
-                      eventStartTime="8:30"
-                      eventEndTime="9:30"
-                    />
-                    <ReservationCard
-                      eventName="DSC Weekly Meeting"
-                      eventOrganizer="Jane Doe"
-                      eventStartTime="8:30"
-                      eventEndTime="9:30"
-                    />
-                  </div>
-                </Accordion>
-                <Accordion title="Case Room">
-                  <div className={styles.reservationList}>
-                    <ReservationCard
-                      eventName="DSC Weekly Meeting"
-                      eventOrganizer="Jane Doe"
-                      eventStartTime="8:30"
-                      eventEndTime="9:30"
-                    />
-                    <ReservationCard
-                      eventName="DSC Weekly Meeting"
-                      eventOrganizer="Jane Doe"
-                      eventStartTime="8:30"
-                      eventEndTime="9:30"
-                    />
-                  </div>
-                </Accordion>
-                <Accordion title="Case Room">
-                  <div className={styles.reservationList}>
-                    <ReservationCard
-                      eventName="DSC Weekly Meeting"
-                      eventOrganizer="Jane Doe"
-                      eventStartTime="8:30"
-                      eventEndTime="9:30"
-                    />
-                  </div>
-                </Accordion>
-              </div>
-            </div>
-          </div>
+          {renderTab(currentTab)}
         </main>
       </div>
+      <Modal show={isModalOpen} setShow={setIsModalOpen}>
+        <CreateRoom />
+      </Modal>
     </div>
   );
 }
