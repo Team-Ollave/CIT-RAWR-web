@@ -11,10 +11,17 @@
   }
 }
 
+.departmentListContainer {
+  @include flexbox($direction: column, $align: flex-start);
+
+  row-gap: 2.5rem;
+}
+
 .departmentContainer {
   @include flexbox($direction: column, $align: flex-start);
 
   row-gap: 1rem;
+  width: 100%;
 }
 
 .departmentName {
