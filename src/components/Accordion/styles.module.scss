@@ -18,6 +18,7 @@
 .accordionBody {
   overflow: hidden;
   width: 100%;
+  flex-grow: 1;
 
-  transition: all 200ms ease;
+  transition: height 200ms ease;
 }

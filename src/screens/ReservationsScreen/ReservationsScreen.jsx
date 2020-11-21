@@ -1,7 +1,6 @@
 import styles from './styles.module.scss';
 import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/Add';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { useState } from 'react';
 import NavItem from './NavItem';
 import ReservationCard from '../../components/ReservationCard';
@@ -67,6 +66,22 @@ export default function ReservationsScreen() {
                 College of Computer Studies
               </h2>
               <div className={styles.roomContainer}>
+                <Accordion title="Case Room" isActive>
+                  <div className={styles.reservationList}>
+                    <ReservationCard
+                      eventName="DSC Weekly Meeting"
+                      eventOrganizer="Jane Doe"
+                      eventStartTime="8:30"
+                      eventEndTime="9:30"
+                    />
+                    <ReservationCard
+                      eventName="DSC Weekly Meeting"
+                      eventOrganizer="Jane Doe"
+                      eventStartTime="8:30"
+                      eventEndTime="9:30"
+                    />
+                  </div>
+                </Accordion>
                 <Accordion title="Case Room">
                   <div className={styles.reservationList}>
                     <ReservationCard
