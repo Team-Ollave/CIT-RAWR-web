@@ -44,8 +44,7 @@ export default function LoginScreen() {
       username === presAccount.username &&
       password === presAccount.password
     ) {
-      setUser(presAccount);
-      // history.push('/reservations');
+      history.push('/president/dashboard');
     }
 
     setErrors('incorrect username or password');

@@ -9,7 +9,7 @@ import TabContent from './Tabs/TabContent';
 import { userTypes } from '../../constants';
 import CreateDepartmentModal from './Modals/CreateDepartmentModal';
 
-export default function ReservationsScreen({ userType = userTypes.PRESIDENT }) {
+export default function ReservationsScreen({ userType }) {
   const [currentTab, setCurrentTab] = useState('pending');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -45,16 +45,18 @@ export default function ReservationsScreen({ userType = userTypes.PRESIDENT }) {
                 Approved by Department, IMDC
               </span>
             </div>
-            <button
-              className={styles.createButton}
-              onClick={() => setIsModalOpen(true)}
-            >
-              <AddIcon className={styles.createButtonIcon} fontSize="small" />
-              <span className={styles.createButtonLabel}>
-                Create{' '}
-                {userType === userTypes.PRESIDENT ? 'Department' : 'Room'}
-              </span>
-            </button>
+            {userType !== userTypes.DEPARTMENT && (
+              <button
+                className={styles.createButton}
+                onClick={() => setIsModalOpen(true)}
+              >
+                <AddIcon className={styles.createButtonIcon} fontSize="small" />
+                <span className={styles.createButtonLabel}>
+                  Create{' '}
+                  {userType === userTypes.PRESIDENT ? 'Department' : 'Room'}
+                </span>
+              </button>
+            )}
           </header>
           <TabContent tabToRender={currentTab} />
         </main>

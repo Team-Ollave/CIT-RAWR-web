@@ -2,11 +2,11 @@ import TopBar from '../../components/TopBar';
 import { userTypes } from '../../constants';
 import ReservationScreen from '../../screens/ReservationsScreen';
 
-export default function IMDCWrapper() {
+export default function PrsidentWrapper() {
   return (
     <>
       <TopBar />
-      <ReservationScreen userType={userTypes.IMDC} />
+      <ReservationScreen userType={userTypes.PRESIDENT} />
     </>
   );
 }
