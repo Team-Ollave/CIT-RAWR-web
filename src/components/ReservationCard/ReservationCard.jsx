@@ -5,9 +5,10 @@ export default function ReservationCard({
   eventOrganizer,
   eventStartTime,
   eventEndTime,
+  handleOnClick,
 }) {
   return (
-    <div className={styles.reservationCard}>
+    <div className={styles.reservationCard} onClick={handleOnClick}>
       <div className={styles.eventMainDetailsContainer}>
         <h6 className={styles.eventName}>{eventName}</h6>
         <span className={styles.eventOrganizerLabel}>

@@ -3,28 +3,15 @@ import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/Add';
 import { useState } from 'react';
 import NavItem from './NavItem';
-import Modal from '../../components/Modal/Modal';
-import CreateRoom from '../../components/CreateRoom/CreateRoom';
-import PendingTab from './Tabs/PendingTab';
-import AcceptedTab from './Tabs/AcceptedTab';
-import DeletedTab from './Tabs/DeletedTab';
+import CreateRoomModal from './Modals/CreateRoomModal';
+import TabContent from './Tabs/TabContent';
 
-export default function ReservationsScreen() {
+import { userTypes } from '../../constants';
+import CreateDepartmentModal from './Modals/CreateDepartmentModal';
+
+export default function ReservationsScreen({ userType = userTypes.PRESIDENT }) {
   const [currentTab, setCurrentTab] = useState('pending');
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const renderTab = (tab) => {
-    switch (currentTab) {
-      case 'pending':
-        return <PendingTab />;
-      case 'accepted':
-        return <AcceptedTab />;
-      case 'deleted':
-        return <DeletedTab />;
-      default:
-        break;
-    }
-  };
 
   return (
     <div className={styles.container}>
@@ -63,15 +50,20 @@ export default function ReservationsScreen() {
               onClick={() => setIsModalOpen(true)}
             >
               <AddIcon className={styles.createButtonIcon} fontSize="small" />
-              <span className={styles.createButtonLabel}>Create Room</span>
+              <span className={styles.createButtonLabel}>
+                Create{' '}
+                {userType === userTypes.PRESIDENT ? 'Department' : 'Room'}
+              </span>
             </button>
           </header>
-          {renderTab(currentTab)}
+          <TabContent tabToRender={currentTab} />
         </main>
       </div>
-      <Modal show={isModalOpen} setShow={setIsModalOpen}>
-        <CreateRoom />
-      </Modal>
+      {userType === userTypes.PRESIDENT ? (
+        <CreateDepartmentModal show={isModalOpen} setShow={setIsModalOpen} />
+      ) : (
+        <CreateRoomModal show={isModalOpen} setShow={setIsModalOpen} />
+      )}
     </div>
   );
 }
