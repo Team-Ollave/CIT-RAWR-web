@@ -1,0 +1,43 @@
+@import '../../../styles/config.scss';
+
+.container {
+  overflow-y: auto;
+  max-height: 72vh;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    display: none;
+  }
+}
+
+.departmentListContainer {
+  @include flexbox($direction: column, $align: flex-start);
+
+  row-gap: 2.5rem;
+}
+
+.departmentContainer {
+  @include flexbox($direction: column, $align: flex-start);
+
+  row-gap: 1rem;
+  width: 100%;
+}
+
+.departmentName {
+  @include title3;
+}
+
+.roomContainer {
+  @include flexbox($direction: column, $align: flex-start);
+
+  row-gap: 0.75rem;
+  width: 100%;
+}
+
+.reservationList {
+  @include flexbox($direction: column, $align: flex-end);
+
+  row-gap: 1rem;
+  width: 100%;
+}

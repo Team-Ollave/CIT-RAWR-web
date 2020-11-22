@@ -1,0 +1,18 @@
+@import '../../../styles/config.scss';
+
+.navItem {
+  width: 100%;
+  color: $gray4;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.navItemActive {
+  background-color: rgba($color: $accent-color, $alpha: 0.05);
+  border-radius: 0.5rem;
+  color: $black;
+}
+
+.navItemLabel {
+  @include h6;
+}

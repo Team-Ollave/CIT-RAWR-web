@@ -1,0 +1,70 @@
+import Accordion from '../../../components/Accordion';
+import ReservationCard from '../../../components/ReservationCard';
+import styles from './styles.module.scss';
+
+export default function PendingTab({ forDepartment = false, data }) {
+  return (
+    <div className={styles.container}>
+      {forDepartment ? (
+        <div className={styles.roomContainer}>
+          {data.map(({ id, roomName, reservations }, index) => (
+            <Accordion key={id} title={roomName} isActive={!index}>
+              <div className={styles.reservationList}>
+                {reservations.map(
+                  ({
+                    id,
+                    eventName,
+                    eventOrganizerName,
+                    eventStartTime,
+                    eventEndTime,
+                  }) => (
+                    <ReservationCard
+                      key={id}
+                      eventName={eventName}
+                      eventOrganizer={eventOrganizerName}
+                      eventStartTime={eventStartTime}
+                      eventEndTime={eventEndTime}
+                    />
+                  )
+                )}
+              </div>
+            </Accordion>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.departmentListContainer}>
+          {data.map(({ departmentName, rooms }) => (
+            <div className={styles.departmentContainer}>
+              <h2 className={styles.departmentName}>{departmentName}</h2>
+              <div className={styles.roomContainer}>
+                {rooms.map(({ id, roomName, reservations }, index) => (
+                  <Accordion key={id} title={roomName} isActive={!index}>
+                    <div className={styles.reservationList}>
+                      {reservations.map(
+                        ({
+                          id,
+                          eventName,
+                          eventOrganizerName,
+                          eventStartTime,
+                          eventEndTime,
+                        }) => (
+                          <ReservationCard
+                            key={id}
+                            eventName={eventName}
+                            eventOrganizer={eventOrganizerName}
+                            eventStartTime={eventStartTime}
+                            eventEndTime={eventEndTime}
+                          />
+                        )
+                      )}
+                    </div>
+                  </Accordion>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

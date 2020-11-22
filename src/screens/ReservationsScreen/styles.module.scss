@@ -1,0 +1,89 @@
+@import '../../styles/config.scss';
+
+.container {
+  @include flexbox($align: flex-start);
+  flex-grow: 1;
+}
+
+.contentContainer {
+  @include flexbox($justify: space-between, $align: flex-start);
+  column-gap: 1.5rem;
+
+  margin-top: 3.25rem;
+  width: 1184px;
+}
+
+.screenTitle {
+  @include title2($weight: $semi-bold);
+
+  margin-bottom: 2.5rem;
+}
+
+.nav {
+  @include flexbox($direction: column, $align: flex-start);
+
+  row-gap: 0.5rem;
+}
+
+.mainContent {
+  flex-grow: 1;
+}
+
+.headerContent {
+  @include flexbox($justify: space-between);
+
+  height: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.approveLabelContainer {
+  @include flexbox($align: center);
+  column-gap: 0.5rem;
+
+  .approveLabelIcon {
+    color: $gray4;
+  }
+  .approveLabel {
+    @include small($weight: $regular);
+    color: $gray4;
+  }
+}
+
+.createButton {
+  @include flexbox;
+
+  column-gap: 0.5rem;
+
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: $accent-color;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  transition: all 100ms ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  .createButtonLabel {
+    @include small($weight: $medium);
+
+    color: white;
+  }
+
+  .createButtonIcon {
+    color: white;
+  }
+}
+
+.roomName {
+  @include flexbox;
+
+  column-gap: 0.5rem;
+}
+
+.roomNameLabel {
+  @include h6($weight: $regular);
+}

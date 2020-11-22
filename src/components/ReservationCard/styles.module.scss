@@ -1,0 +1,37 @@
+@import '../../styles/config.scss';
+
+.reservationCard {
+  @include flexbox($justify: space-between);
+
+  padding: 0.75rem 1.5rem;
+  border: 1px solid $black;
+  border-radius: 0.75rem;
+  width: 100%;
+  transition: all 100ms ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($color: $accent-color, $alpha: 0.05);
+    width: 99%;
+  }
+}
+
+.eventMainDetailsContainer {
+  @include flexbox($direction: column, $align: flex-start);
+
+  row-gap: 0.25rem;
+}
+
+.eventName {
+  @include title3;
+}
+
+.eventOrganizerLabel {
+  @include body1;
+
+  color: $gray4;
+}
+
+.eventTime {
+  @include body1($weight: $medium);
+}
