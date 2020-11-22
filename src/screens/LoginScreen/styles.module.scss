@@ -1,4 +1,4 @@
-@import "../../styles/config.scss";
+@import '../../styles/config.scss';
 
 .loginFormContainer {
   @include flexbox($direction: column);
@@ -27,7 +27,7 @@
 
 .leftPortion {
   background-color: #741e1e;
-  width: 100%;
+  // width: 100%;
   height: 100%;
   display: grid;
   place-items: center;
@@ -42,7 +42,8 @@
   place-items: center;
   width: 100%;
   height: 100%;
-  background-color: #f0f2f5;
+  // background-color: #f0f2f5;
+  background-color: white;
 }
 
 .signInContainer {
@@ -58,32 +59,42 @@
 .signInMainContent {
   @include flexbox($direction: column);
   width: 100%;
-  padding: 32px;
+  padding: 2.5rem 2rem;
 }
 
 .signInHeader {
-  background-color: #f3f6f9;
+  background-color: $gray0;
   width: 100%;
-  height: 3.3125rem;
+  padding: 1rem 0;
   display: grid;
   place-items: center;
   cursor: default;
 }
 
+.signInHeaderLabel {
+  @include h6($medium);
+}
+
 .signInInputs {
   @include body1;
   padding: 0 1rem;
-  margin: 12px 0;
-  height: 48px;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
   border: 1px solid #dde2e5;
   border-radius: 8px;
   width: 100%;
+  background-color: $gray0;
+  outline: none;
+  transition: all 100ms ease;
+
+  &:focus {
+    border-color: $black;
+  }
 }
 
 .signInButton {
-  @include body1;
-  margin-top: 12px;
-  height: 40px;
+  @include body1($medium);
+  margin-top: 1rem;
   text-align: center;
   border: none;
   background-color: #741e1e;
@@ -91,6 +102,8 @@
   color: white;
   width: 100%;
   cursor: pointer;
+  padding: 0.5rem 0;
+  outline: none;
 }
 
 .forgetPasswordButton {

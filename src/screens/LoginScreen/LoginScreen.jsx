@@ -1,30 +1,30 @@
-import { useState, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "../../App";
-import { userTypes } from "../../constants";
-import styles from "./styles.module.scss";
-import icon_logo from "../../assets/icon_logo.png";
+import { useState, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
+import { userTypes } from '../../constants';
+import styles from './styles.module.scss';
+import icon_logo from '../../assets/icon_logo.png';
 
 const departmentAccount = {
-  username: "dept",
-  password: "123",
+  username: 'dept',
+  password: '123',
   userType: userTypes.DEPARTMENT,
 };
 const imdcAccount = {
-  username: "imdc",
-  password: "123",
+  username: 'imdc',
+  password: '123',
   userType: userTypes.IMDC,
 };
 const presAccount = {
-  username: "pres",
-  password: "123",
+  username: 'pres',
+  password: '123',
   userType: userTypes.PRESIDENT,
 };
 
 export default function LoginScreen() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState('');
   const history = useHistory();
 
   const handleOnSubmit = (event) => {
@@ -34,20 +34,20 @@ export default function LoginScreen() {
       username === departmentAccount.username &&
       password === departmentAccount.password
     ) {
-      history.push("/admin/dashboard");
+      history.push('/admin/dashboard');
     } else if (
       username === imdcAccount.username &&
       password === imdcAccount.password
     ) {
-      history.push("/imdc/dashboard");
+      history.push('/imdc/dashboard');
     } else if (
       username === presAccount.username &&
       password === presAccount.password
     ) {
-      history.push("/president/dashboard");
+      history.push('/president/dashboard');
     }
 
-    setErrors("incorrect username or password");
+    setErrors('incorrect username or password');
   };
 
   return (
@@ -57,7 +57,11 @@ export default function LoginScreen() {
       </div>
       <div className={styles.rightPortion}>
         <div className={styles.signInContainer}>
-          <header className={styles.signInHeader}>Accept Reservations</header>
+          <header className={styles.signInHeader}>
+            <span className={styles.signInHeaderLabel}>
+              Accept Reservations
+            </span>
+          </header>
           <div className={styles.signInMainContent}>
             <form method="post" onSubmit={handleOnSubmit}>
               <input
