@@ -1,6 +1,5 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { UserContext } from '../../App';
 import { userTypes } from '../../constants';
 import styles from './styles.module.scss';
 import icon_logo from '../../assets/icon_logo.png';

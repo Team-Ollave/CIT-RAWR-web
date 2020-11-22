@@ -21,7 +21,19 @@ export default function AcceptModal({ show, setShow }) {
 
   return (
     <Modal show={show} setShow={setShow}>
-      <div style={{ display: 'flex', columnGap: '1rem' }}>
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <h4 className={styles.headerLabel}>
+            DSC Meeting
+          </h4>
+        </header>
+      <div className={styles.body}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Eaque eveniet hic vero. Ratione soluta, laborum iste maiores, 
+        numquam laudantium velit facilis non, in esse corporis ut ipsam 
+        sint eaque nobis.
+      </div>
+      <div className={styles.footer}>
         <button className={styles.secondary} onClick={() => setShow(false)}>
           <span className={styles.buttonLabel}>Decline</span>
         </button>
@@ -29,6 +41,8 @@ export default function AcceptModal({ show, setShow }) {
           <span className={styles.buttonLabel}>Accept</span>
         </button>
       </div>
+      </div>
+      
     </Modal>
   );
 }
