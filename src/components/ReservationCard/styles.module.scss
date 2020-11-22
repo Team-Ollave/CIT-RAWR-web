@@ -12,10 +12,7 @@
 
   &:hover {
     background-color: rgba($color: $accent-color, $alpha: 0.05);
-
-    &:not(:last-of-type) {
-      transform: translateY(5px);
-    }
+    width: 99%;
   }
 }
 
