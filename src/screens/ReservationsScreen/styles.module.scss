@@ -61,6 +61,12 @@
   border: none;
   cursor: pointer;
 
+  transition: all 100ms ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
   .createButtonLabel {
     @include small($weight: $medium);
 

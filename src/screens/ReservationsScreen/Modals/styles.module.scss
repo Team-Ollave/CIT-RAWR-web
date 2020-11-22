@@ -71,10 +71,16 @@
   padding: 0.5rem 1rem;
   background-color: $accent-color;
   outline: none;
-  border-radius: 9999px;
+  border-radius: 0.75rem;
   border: none;
   cursor: pointer;
   margin-top: 1rem;
+
+  transition: all 100ms ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 .buttonLabel {
