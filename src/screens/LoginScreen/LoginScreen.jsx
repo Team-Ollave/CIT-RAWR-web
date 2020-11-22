@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
 import { userTypes } from '../../constants';
 import styles from './styles.module.scss';
+import icon_logo from '../../assets/icon_logo.png';
 
 const departmentAccount = {
   username: 'dept',
@@ -50,32 +52,42 @@ export default function LoginScreen() {
 
   return (
     <div className={styles.container}>
-      <form
-        method="post"
-        className={styles.loginFormContainer}
-        onSubmit={handleOnSubmit}
-      >
-        <header>Sign in</header>
-        <div className={styles.bodyContainer}>
-          {errors && <p>{errors}</p>}
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div>
-            <Link to="/imdc">Forgot your password?</Link>
-            <button>Sign In</button>
+      <div className={styles.leftPortion}>
+        <img src={icon_logo} alt="logo" className={styles.logo} />
+      </div>
+      <div className={styles.rightPortion}>
+        <div className={styles.signInContainer}>
+          <header className={styles.signInHeader}>
+            <span className={styles.signInHeaderLabel}>
+              Accept Reservations
+            </span>
+          </header>
+          <div className={styles.signInMainContent}>
+            <form method="post" onSubmit={handleOnSubmit}>
+              <input
+                type="text"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className={styles.signInInputs}
+                placeholder="Email"
+              />
+              <input
+                className={styles.signInInputs}
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              />
+              <button className={styles.signInButton}>Sign in</button>
+            </form>
+            <Link className={styles.forgetPasswordButton}>
+              Forgot Password?
+            </Link>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
