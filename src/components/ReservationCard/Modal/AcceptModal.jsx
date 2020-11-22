@@ -24,7 +24,7 @@ export default function AcceptModal({ show, setShow }) {
       <div className={styles.container}>
         <header className={styles.header}>
           <h4 className={styles.headerLabel}>
-            DSC Meeting
+            OLV Meeting
           </h4>
         </header>
       <div className={styles.body}>
