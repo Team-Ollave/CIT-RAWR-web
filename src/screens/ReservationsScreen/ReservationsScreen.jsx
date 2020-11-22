@@ -63,7 +63,7 @@ export default function ReservationsScreen({ userType }) {
               onClick={() => setCurrentTab('accepted')}
             />
             <NavItem
-              label="Deleted"
+              label="Declined"
               isActive={currentTab === 'deleted'}
               onClick={() => setCurrentTab('deleted')}
             />

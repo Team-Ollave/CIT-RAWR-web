@@ -7,7 +7,16 @@
   border: 1px solid $black;
   border-radius: 0.75rem;
   width: 100%;
-  // background-color: white;
+  transition: all 100ms ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($color: $accent-color, $alpha: 0.05);
+
+    &:not(:last-of-type) {
+      transform: translateY(5px);
+    }
+  }
 }
 
 .eventMainDetailsContainer {
