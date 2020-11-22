@@ -17,7 +17,7 @@ export default function CreateDepartmentModal({ show, setShow }) {
             <label className={styles.fieldLabel}>Department Name</label>
             <input type="text" className={styles.fieldInput} />
           </div>
-          {/* <h4
+          <h4
             style={{
               alignSelf: 'flex-start',
               marginTop: '1.5rem',
@@ -37,7 +37,7 @@ export default function CreateDepartmentModal({ show, setShow }) {
           <div className={styles.field}>
             <label className={styles.fieldLabel}>Password</label>
             <input type="password" className={styles.fieldInput} />
-          </div> */}
+          </div>
           <button
             className={styles.createButton}
             onClick={() => setShow(false)}
