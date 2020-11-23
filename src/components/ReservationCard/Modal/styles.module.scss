@@ -1,0 +1,41 @@
+@import '../../../styles/config.scss';
+
+.button {
+  @include flexbox;
+  align-self: flex-end;
+
+  padding: 0.5rem 1rem;
+  outline: none;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+
+  transition: all 100ms ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.primary {
+  composes: button;
+
+  background-color: $accent-color;
+
+  .buttonLabel {
+    @include body1($medium);
+
+    color: white;
+  }
+}
+
+.secondary {
+  composes: button;
+
+  .buttonLabel {
+    @include body1($medium);
+
+    color: $gray4;
+  }
+}

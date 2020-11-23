@@ -46,6 +46,15 @@ export default function ReservationsScreen({ userType }) {
     }
   };
 
+  const renderApproveLabel = (
+    <div className={styles.approveLabelContainer}>
+      <CheckIcon className={styles.approveLabelIcon} />
+      <span className={styles.approveLabel}>
+        Approved by {isUserPresident ? 'Department, IMDC' : 'Department'}
+      </span>
+    </div>
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -72,12 +81,7 @@ export default function ReservationsScreen({ userType }) {
 
         <main className={styles.mainContent}>
           <header className={styles.headerContent}>
-            <div className={styles.approveLabelContainer}>
-              <CheckIcon className={styles.approveLabelIcon} />
-              <span className={styles.approveLabel}>
-                Approved by Department, IMDC
-              </span>
-            </div>
+            {!isUserDepartment && renderApproveLabel}
             {!isUserDepartment && (
               <button
                 className={styles.createButton}

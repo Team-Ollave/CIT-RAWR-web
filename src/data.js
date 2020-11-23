@@ -20,7 +20,7 @@ export const generateDepartments = (max) =>
   Array.from({ length: getRandomInt(1, max) }).map((_, index) => ({
     id: index,
     departmentName: `Department ${index + 1}`,
-    rooms: generateRooms(2),
+    rooms: generateRooms(4),
   }));
 
 export const RESERVATIONS_LIST = Array.from({ length: getRandomInt(1, 4) }).map(
@@ -45,6 +45,6 @@ export const DEPARTMENTS_LIST = Array.from({ length: getRandomInt(1, 2) }).map(
   (_, index) => ({
     id: index,
     departmentName: `Department ${index + 1}`,
-    rooms: generateRooms(2),
+    rooms: generateRooms(4),
   })
 );

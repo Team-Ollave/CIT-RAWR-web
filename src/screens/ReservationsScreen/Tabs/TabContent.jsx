@@ -9,7 +9,7 @@ export default function TabContent({
 }) {
   if (tabToRender === 'accepted')
     return <AcceptedTab forDepartment={forDepartment} data={data} />;
-  else if (tabToRender === 'deleted')
+  else if (tabToRender === 'declined')
     return <DeletedTab forDepartment={forDepartment} data={data} />;
 
   return <PendingTab forDepartment={forDepartment} data={data} />;

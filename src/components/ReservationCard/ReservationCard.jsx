@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import AcceptModal from './Modal/AcceptModal';
 import styles from './styles.module.scss';
 
 export default function ReservationCard({
@@ -7,8 +9,14 @@ export default function ReservationCard({
   eventEndTime,
   handleOnClick,
 }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOnClick2 = () => {
+    setShowModal(true);
+  };
+
   return (
-    <div className={styles.reservationCard} onClick={handleOnClick}>
+    <div className={styles.reservationCard} onClick={handleOnClick2}>
       <div className={styles.eventMainDetailsContainer}>
         <h6 className={styles.eventName}>{eventName}</h6>
         <span className={styles.eventOrganizerLabel}>
@@ -18,6 +26,8 @@ export default function ReservationCard({
       <span className={styles.eventTime}>
         {eventStartTime}-{eventEndTime}
       </span>
+
+      <AcceptModal show={showModal} setShow={setShowModal} />
     </div>
   );
 }
