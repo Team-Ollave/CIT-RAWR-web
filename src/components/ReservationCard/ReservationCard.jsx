@@ -7,6 +7,7 @@ export default function ReservationCard({
   eventOrganizer,
   eventStartTime,
   eventEndTime,
+  status,
   handleOnClick,
 }) {
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +28,12 @@ export default function ReservationCard({
         {eventStartTime}-{eventEndTime}
       </span>
 
-      <AcceptModal show={showModal} setShow={setShowModal} />
+      <AcceptModal
+        show={showModal}
+        setShow={setShowModal}
+        status={status}
+        eventName={eventName}
+      />
     </div>
   );
 }

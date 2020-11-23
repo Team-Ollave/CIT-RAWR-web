@@ -24,14 +24,16 @@ export default function ReservationsScreen({ userType }) {
   useEffect(() => {
     if (isUserDepartment) {
       setPendingData(generateRooms(4));
-      setAcceptedData(generateRooms(3));
-      setDeclinedData(generateRooms(2));
+      setAcceptedData(generateRooms(3, 'Accepted'));
+      setDeclinedData(generateRooms(2, 'Declined'));
     } else {
       setPendingData(generateDepartments(3));
-      setAcceptedData(generateDepartments(4));
-      setDeclinedData(generateDepartments(2));
+      setAcceptedData(generateDepartments(4, 'Accepted'));
+      setDeclinedData(generateDepartments(2, 'Declined'));
     }
   }, [isUserDepartment]);
+
+  console.log(pendingData);
 
   const handleTabContentData = (tab) => {
     switch (tab) {
