@@ -15,6 +15,7 @@ export default function AcceptedTab({ forDepartment = false, data }) {
                 eventOrganizerName,
                 eventStartTime,
                 eventEndTime,
+                status,
               }) => (
                 <ReservationCard
                   key={id}
@@ -22,6 +23,7 @@ export default function AcceptedTab({ forDepartment = false, data }) {
                   eventOrganizer={eventOrganizerName}
                   eventStartTime={eventStartTime}
                   eventEndTime={eventEndTime}
+                  status={status}
                 />
               )
             )}

@@ -1,6 +1,6 @@
 export const getRandomInt = (min, max) => min + Math.random() * max;
 
-export const generateReservations = (max, status = 'pending') =>
+export const generateReservations = (max, status = 'Pending') =>
   Array.from({ length: getRandomInt(1, max) }).map((_, index) => ({
     id: index,
     eventName: `Event ${index + 1}`,
@@ -10,14 +10,14 @@ export const generateReservations = (max, status = 'pending') =>
     status,
   }));
 
-export const generateRooms = (max, status = 'pending') =>
+export const generateRooms = (max, status = 'Pending') =>
   Array.from({ length: getRandomInt(1, max) }).map((_, index) => ({
     id: index,
     roomName: `Room ${index + 1}`,
     reservations: generateReservations(4, status),
   }));
 
-export const generateDepartments = (max, status = 'pending') =>
+export const generateDepartments = (max, status = 'Pending') =>
   Array.from({ length: getRandomInt(1, max) }).map((_, index) => ({
     id: index,
     departmentName: `Department ${index + 1}`,
