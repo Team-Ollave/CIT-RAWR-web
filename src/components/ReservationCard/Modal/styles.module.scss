@@ -17,22 +17,23 @@
     opacity: 0.9;
   }
 }
-.container{
+
+.container {
   @include flexbox($direction: column);
   background-color: white;
   border-radius: 1.25rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  
 }
 
-.footer{
+.footer {
   display: flex;
   width: 100%;
   justify-content: center;
+  padding: 1rem;
 }
 
 .header {
-  @include flexbox($justify: flex-start);
+  @include flexbox($justify: space-between);
 
   width: 100%;
   padding: 1.5rem 2rem;
@@ -43,9 +44,9 @@
   @include title3($weight: $medium);
 }
 
-.body{
-  @include flexbox($direction: column);
-  
+.body {
+  @include flexbox($direction: column, $align: flex-start);
+
   max-width: 30vw;
   row-gap: 1rem;
   padding: 2rem;
