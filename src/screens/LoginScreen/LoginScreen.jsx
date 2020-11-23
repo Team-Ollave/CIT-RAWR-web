@@ -27,6 +27,7 @@ export default function LoginScreen() {
   const history = useHistory();
 
   const handleOnSubmit = (event) => {
+    console.log(errors);
     event.preventDefault();
 
     if (
