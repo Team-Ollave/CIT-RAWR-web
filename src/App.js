@@ -9,18 +9,28 @@ import './App.scss';
 import DepartmentWrapper from './screen-wrappers/DepartmentWrapper';
 import IMDCWrapper from './screen-wrappers/IMDCWrapper';
 import PresidentWrapper from './screen-wrappers/PresidentWrapper';
+import ProvideAuth from './hocs/ProvideAuth';
+import PrivateRoute from './hocs/PrivateRoute';
 
 export default function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" children={<Redirect to="/login" />} />
-        <Route path="/login" children={<LoginScreen />} />
-        <Route path="/admin/dashboard" children={<DepartmentWrapper />} />
-        <Route path="/imdc/dashboard" children={<IMDCWrapper />} />
-        <Route path="/president/dashboard" children={<PresidentWrapper />} />
-        <Redirect to="/" />
-      </Switch>
-    </Router>
+    <ProvideAuth>
+      <Router>
+        <Switch>
+          <Route exact path="/" children={<Redirect to="/sign-in" />} />
+          <Route path="/sign-in" children={<LoginScreen />} />
+          <PrivateRoute
+            path="/admin/dashboard"
+            children={<DepartmentWrapper />}
+          />
+          <PrivateRoute path="/imdc/dashboard" children={<IMDCWrapper />} />
+          <PrivateRoute
+            path="/president/dashboard"
+            children={<PresidentWrapper />}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </Router>
+    </ProvideAuth>
   );
 }

@@ -3,51 +3,43 @@ import { Link, useHistory } from 'react-router-dom';
 import { userTypes } from '../../constants';
 import styles from './styles.module.scss';
 import icon_logo from '../../assets/icon_logo.png';
-
-const departmentAccount = {
-  username: 'dept',
-  password: '123',
-  userType: userTypes.DEPARTMENT,
-};
-const imdcAccount = {
-  username: 'imdc',
-  password: '123',
-  userType: userTypes.IMDC,
-};
-const presAccount = {
-  username: 'pres',
-  password: '123',
-  userType: userTypes.PRESIDENT,
-};
+import axios from '../../api';
+import { useAuth } from '../../auth';
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState('');
   const history = useHistory();
+  const auth = useAuth();
 
-  const handleOnSubmit = (event) => {
+  const handleOnSubmit = async (event) => {
     console.log(errors);
     event.preventDefault();
 
-    if (
-      username === departmentAccount.username &&
-      password === departmentAccount.password
-    ) {
-      history.push('/admin/dashboard');
-    } else if (
-      username === imdcAccount.username &&
-      password === imdcAccount.password
-    ) {
-      history.push('/imdc/dashboard');
-    } else if (
-      username === presAccount.username &&
-      password === presAccount.password
-    ) {
-      history.push('/president/dashboard');
+    try {
+      const res = await axios.post('/api/users/login/', {
+        email: username,
+        password,
+      });
+
+      if (res.status === 200) {
+        const user = res.data;
+        auth.signIn(user, () => {
+          if (user.user_type === userTypes.DEPARTMENT) {
+            history.push('/admin/dashboard');
+          } else if (user.user_type === userTypes.IMDC) {
+            history.push('/imdc/dashboard');
+          } else if (user.user_type === userTypes.PRESIDENT) {
+            history.push('/president/dashboard');
+          }
+        });
+      }
+    } catch (err) {
+      console.error(err);
     }
 
-    setErrors('incorrect username or password');
+    setErrors('incorrect email or password');
   };
 
   return (
@@ -80,6 +72,8 @@ export default function LoginScreen() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
               />
+              <small style={{ fontWeight: 400 }}>{errors}</small>
+
               <button className={styles.signInButton}>Sign in</button>
             </form>
             <Link className={styles.forgetPasswordButton}>
