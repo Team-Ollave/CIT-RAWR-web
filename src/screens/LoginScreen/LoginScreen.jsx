@@ -76,7 +76,7 @@ export default function LoginScreen() {
 
               <button className={styles.signInButton}>Sign in</button>
             </form>
-            <Link className={styles.forgetPasswordButton}>
+            <Link className={styles.forgetPasswordButton} to="/">
               Forgot Password?
             </Link>
           </div>

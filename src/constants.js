@@ -3,3 +3,9 @@ export const userTypes = {
   IMDC: 'I',
   PRESIDENT: 'P',
 };
+
+export const reservationStatusTypes = {
+  PENDING: 'P',
+  ACCEPTED: 'A',
+  DECLINED: 'D',
+};
