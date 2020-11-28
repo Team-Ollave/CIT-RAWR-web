@@ -1,52 +1,20 @@
 import styles from './styles.module.scss';
 import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/Add';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import NavItem from './NavItem';
 import CreateRoomModal from './Modals/CreateRoomModal';
 import TabContent from './Tabs/TabContent';
 
-import { userTypes } from '../../constants';
 import CreateDepartmentModal from './Modals/CreateDepartmentModal';
-import { generateDepartments, generateRooms } from '../../data';
+import { userTypes } from '../../constants';
 
 export default function ReservationsScreen({ userType }) {
   const [currentTab, setCurrentTab] = useState('pending');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [pendingData, setPendingData] = useState([]);
-  const [acceptedData, setAcceptedData] = useState([]);
-  const [declinedData, setDeclinedData] = useState([]);
-
   const isUserDepartment = userType === userTypes.DEPARTMENT;
   const isUserPresident = userType === userTypes.PRESIDENT;
-
-  useEffect(() => {
-    if (isUserDepartment) {
-      setPendingData(generateRooms(4));
-      setAcceptedData(generateRooms(3, 'Accepted'));
-      setDeclinedData(generateRooms(2, 'Declined'));
-    } else {
-      setPendingData(generateDepartments(3));
-      setAcceptedData(generateDepartments(4, 'Accepted'));
-      setDeclinedData(generateDepartments(2, 'Declined'));
-    }
-  }, [isUserDepartment]);
-
-  console.log(pendingData);
-
-  const handleTabContentData = (tab) => {
-    switch (tab) {
-      case 'accepted':
-        return acceptedData;
-
-      case 'declined':
-        return declinedData;
-
-      default:
-        return pendingData;
-    }
-  };
 
   const renderApproveLabel = (
     <div className={styles.approveLabelContainer}>
@@ -99,7 +67,6 @@ export default function ReservationsScreen({ userType }) {
           <TabContent
             tabToRender={currentTab}
             forDepartment={isUserDepartment}
-            data={handleTabContentData(currentTab)}
           />
         </main>
       </div>
