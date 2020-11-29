@@ -1,23 +1,31 @@
 import Accordion from '../../../components/Accordion';
 import ReservationCard from '../../../components/ReservationCard';
 import styles from './styles.module.scss';
-import { reservationStatusTypes } from '../../../constants';
+import { reservationStatusTypes, userTypes } from '../../../constants';
 import { useQuery } from 'react-query';
 import {
   getReservations,
   getRooms,
+  getUsers,
   reservationsKey,
   roomsKey,
+  usersKey,
 } from '../../../api';
+import { useAuth } from '../../../auth';
 
 export default function PendingTab({ forDepartment = false }) {
   const {
-    data: reservationsList,
-    isLoading: isLoadingReservations,
-  } = useQuery(`${reservationsKey}/pending`, () =>
-    getReservations({ status: reservationStatusTypes.PENDING }).then(
-      (res) => res.data
-    )
+    user: { user_type: userType, id: userId },
+  } = useAuth();
+
+  const { data: reservationsList, isLoading: isLoadingReservations } = useQuery(
+    `${reservationsKey}/pending`,
+    () =>
+      getReservations({
+        status: reservationStatusTypes.PENDING,
+        forUserType: userType,
+        departmentId: forDepartment ? userId : null,
+      }).then((res) => res.data)
   );
 
   const { data: roomsList, isLoading: isLoadingRooms } = useQuery(
@@ -25,7 +33,14 @@ export default function PendingTab({ forDepartment = false }) {
     () => getRooms({ hasReservations: true }).then((res) => res.data)
   );
 
-  const formattedData = roomsList
+  const {
+    data: departmentsList,
+    isLoading: isLoadingDepartments,
+  } = useQuery(usersKey, () =>
+    getUsers({ userType: userTypes.DEPARTMENT }).then((res) => res.data)
+  );
+
+  let formattedData = roomsList
     ?.map((room) => ({
       ...room,
       reservations: reservationsList?.filter(
@@ -34,7 +49,19 @@ export default function PendingTab({ forDepartment = false }) {
     }))
     .filter((room) => room.reservations?.length !== 0);
 
-  if (isLoadingRooms || isLoadingReservations) return 'Loading...';
+  if (!forDepartment) {
+    formattedData = departmentsList
+      ?.map((department) => ({
+        ...department,
+        rooms: formattedData?.filter(
+          (room) => room.department === department.id
+        ),
+      }))
+      .filter((department) => department.rooms?.length !== 0);
+  }
+
+  if (isLoadingRooms || isLoadingReservations || isLoadingDepartments)
+    return 'Loading...';
 
   const renderRoomsList = (data) => (
     <div className={styles.roomContainer}>
@@ -75,12 +102,14 @@ export default function PendingTab({ forDepartment = false }) {
         renderRoomsList(formattedData)
       ) : (
         <div className={styles.departmentListContainer}>
-          {roomsList.map(({ rooms, departmentName }) => (
-            <div className={styles.departmentContainer}>
-              <h2 className={styles.departmentName}>{departmentName}</h2>
-              {renderRoomsList({ roomsList, reservationsList })}
-            </div>
-          ))}
+          {formattedData.map(
+            ({ id, profile_data: { display_name: displayName }, rooms }) => (
+              <div className={styles.departmentContainer} key={id}>
+                <h2 className={styles.departmentName}>{displayName}</h2>
+                {renderRoomsList(rooms)}
+              </div>
+            )
+          )}
         </div>
       )}
     </div>

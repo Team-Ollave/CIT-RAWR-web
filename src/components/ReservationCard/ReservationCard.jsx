@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { formatTime } from '../../utils';
 import AcceptModal from './Modal/AcceptModal';
 import styles from './styles.module.scss';
 
@@ -25,7 +26,7 @@ export default function ReservationCard({
         </span>
       </div>
       <span className={styles.eventTime}>
-        {eventStartTime}-{eventEndTime}
+        {formatTime(eventStartTime)} - {formatTime(eventEndTime)}
       </span>
 
       <AcceptModal
