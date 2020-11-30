@@ -4,11 +4,13 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import CalendarTodayOutlinedIcon from '@material-ui/icons/CalendarTodayOutlined';
 
 import styles from './styles.module.scss';
-import { reservationStatusTypes } from '../../../constants';
+import { reservationStatusTypes, userTypes } from '../../../constants';
 import { useQueryCache } from 'react-query';
-import { buildingsKey, roomsKey } from '../../../api';
+import axios, { buildingsKey, reservationsKey, roomsKey } from '../../../api';
+import { useAuth } from '../../../auth';
 
 export default function ReservationModal({
+  reservationId,
   show,
   setShow,
   status,
@@ -20,6 +22,9 @@ export default function ReservationModal({
   eventEndTime,
   roomId,
 }) {
+  const {
+    user: { user_type: userType },
+  } = useAuth();
   const cache = useQueryCache();
 
   const room = cache.getQueryData(roomsKey).find((room) => room.id === roomId);
@@ -28,6 +33,26 @@ export default function ReservationModal({
     .find((building) => building.id === room.building);
 
   const dateToString = new Date(eventDate).toDateString();
+
+  const handleAccepted = () => {
+    let data = { is_accepted_department: true };
+    if (userType === userTypes.IMDC) data = { is_accepted_imdc: true };
+    else if (userType === userTypes.PRESIDENT)
+      data = { is_accepted_president: true };
+
+    axios.patch(`api/reservations/${reservationId}/`, data);
+    setShow(false);
+  };
+
+  const handleDecline = () => {
+    let data = { is_accepted_department: false };
+    if (userType === userTypes.IMDC) data = { is_accepted_imdc: false };
+    else if (userType === userTypes.PRESIDENT)
+      data = { is_accepted_president: false };
+
+    axios.patch(`api/reservations/${reservationId}/`, data);
+    setShow(false);
+  };
 
   return (
     <Modal show={show} setShow={setShow}>
@@ -68,10 +93,10 @@ export default function ReservationModal({
         </div>
         {status === reservationStatusTypes.PENDING && (
           <div className={styles.footer}>
-            <button className={styles.secondary} onClick={() => setShow(false)}>
+            <button className={styles.secondary} onClick={handleDecline}>
               <span className={styles.buttonLabel}>Decline</span>
             </button>
-            <button className={styles.primary} onClick={() => setShow(false)}>
+            <button className={styles.primary} onClick={handleAccepted}>
               <span className={styles.buttonLabel}>Accept</span>
             </button>
           </div>

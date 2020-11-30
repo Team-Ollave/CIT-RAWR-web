@@ -4,6 +4,7 @@ import ReservationModal from './Modal/ReservationModal';
 import styles from './styles.module.scss';
 
 export default function ReservationCard({
+  reservationId,
   eventName,
   eventOrganizer,
   eventStartTime,
@@ -33,6 +34,7 @@ export default function ReservationCard({
         eventStartTime={eventStartTime}
         eventEndTime={eventEndTime}
         roomId={roomId}
+        reservationId={reservationId}
       />
 
       <div className={styles.reservationCard} onClick={handleOnClick2}>

@@ -25,7 +25,10 @@ export default function PendingTab({ forDepartment = false }) {
         status: reservationStatusTypes.PENDING,
         forUserType: userType,
         departmentId: forDepartment ? userId : null,
-      }).then((res) => res.data)
+      }).then((res) => res.data),
+    {
+      refetchInterval: 1000,
+    }
   );
 
   const { data: roomsList, isLoading: isLoadingRooms } = useQuery(
@@ -92,6 +95,7 @@ export default function PendingTab({ forDepartment = false }) {
                       status={status}
                       eventDate={eventDate}
                       roomId={roomId}
+                      reservationId={id}
                     />
                   )
                 )}
