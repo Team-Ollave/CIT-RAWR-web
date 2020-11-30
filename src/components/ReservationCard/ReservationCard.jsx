@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { formatTime } from '../../utils';
-import AcceptModal from './Modal/AcceptModal';
+import ReservationModal from './Modal/ReservationModal';
 import styles from './styles.module.scss';
 
 export default function ReservationCard({
@@ -9,6 +9,7 @@ export default function ReservationCard({
   eventStartTime,
   eventEndTime,
   status,
+  eventDescription,
   handleOnClick,
 }) {
   const [showModal, setShowModal] = useState(false);
@@ -19,11 +20,13 @@ export default function ReservationCard({
 
   return (
     <>
-      <AcceptModal
+      <ReservationModal
         show={showModal}
         setShow={setShowModal}
         status={status}
         eventName={eventName}
+        eventOrganizer={eventOrganizer}
+        eventDescription={eventDescription}
       />
 
       <div className={styles.reservationCard} onClick={handleOnClick2}>

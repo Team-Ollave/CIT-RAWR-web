@@ -1,0 +1,29 @@
+@import '../../styles/config.scss';
+
+.statusBadge {
+  @include flexbox;
+
+  padding: 0.125rem 0.75rem;
+  border-radius: 999px;
+}
+
+.pending {
+  composes: statusBadge;
+  background-color: $pending-yellow;
+}
+
+.accepted {
+  composes: statusBadge;
+  background-color: $accepted-green;
+}
+
+.declined {
+  composes: statusBadge;
+  background-color: $declined-red;
+}
+
+.badgeLabel {
+  @include small($weight: $medium);
+
+  color: white;
+}

@@ -77,6 +77,7 @@ export default function DeletedTab({ forDepartment = false }) {
                     event_organizer_name: eventOrganizerName,
                     start_time: eventStartTime,
                     end_time: eventEndTime,
+                    event_description: eventDescription,
                     status,
                   }) => (
                     <ReservationCard
@@ -85,6 +86,7 @@ export default function DeletedTab({ forDepartment = false }) {
                       eventOrganizer={eventOrganizerName}
                       eventStartTime={eventStartTime}
                       eventEndTime={eventEndTime}
+                      eventDescription={eventDescription}
                       status={status}
                     />
                   )
