@@ -14,27 +14,29 @@ export default function ReservationCard({
   const [showModal, setShowModal] = useState(false);
 
   const handleOnClick2 = () => {
-    setShowModal(true);
+    setShowModal(!showModal);
   };
 
   return (
-    <div className={styles.reservationCard} onClick={handleOnClick2}>
-      <div className={styles.eventMainDetailsContainer}>
-        <h6 className={styles.eventName}>{eventName}</h6>
-        <span className={styles.eventOrganizerLabel}>
-          Reserved by {eventOrganizer}
-        </span>
-      </div>
-      <span className={styles.eventTime}>
-        {formatTime(eventStartTime)} - {formatTime(eventEndTime)}
-      </span>
-
+    <>
       <AcceptModal
         show={showModal}
         setShow={setShowModal}
         status={status}
         eventName={eventName}
       />
-    </div>
+
+      <div className={styles.reservationCard} onClick={handleOnClick2}>
+        <div className={styles.eventMainDetailsContainer}>
+          <h6 className={styles.eventName}>{eventName}</h6>
+          <span className={styles.eventOrganizerLabel}>
+            Reserved by {eventOrganizer}
+          </span>
+        </div>
+        <span className={styles.eventTime}>
+          {formatTime(eventStartTime)} - {formatTime(eventEndTime)}
+        </span>
+      </div>
+    </>
   );
 }
