@@ -5,6 +5,8 @@ import CalendarTodayOutlinedIcon from '@material-ui/icons/CalendarTodayOutlined'
 
 import styles from './styles.module.scss';
 import { reservationStatusTypes } from '../../../constants';
+import { useQueryCache } from 'react-query';
+import { buildingsKey, roomsKey } from '../../../api';
 
 export default function ReservationModal({
   show,
@@ -13,7 +15,20 @@ export default function ReservationModal({
   eventName,
   eventOrganizer,
   eventDescription,
+  eventDate,
+  eventStartTime,
+  eventEndTime,
+  roomId,
 }) {
+  const cache = useQueryCache();
+
+  const room = cache.getQueryData(roomsKey).find((room) => room.id === roomId);
+  const building = cache
+    .getQueryData(buildingsKey)
+    .find((building) => building.id === room.building);
+
+  const dateToString = new Date(eventDate).toDateString();
+
   return (
     <Modal show={show} setShow={setShow}>
       <div className={styles.container}>
@@ -27,12 +42,14 @@ export default function ReservationModal({
             <div className={styles.detail}>
               <LocationOnOutlinedIcon />
               <span className={styles.detailsLabel}>
-                ST Building - Case Room
+                {building.name} - {room.name}
               </span>
             </div>
             <div className={styles.detail}>
               <CalendarTodayOutlinedIcon />
-              <span className={styles.detailsLabel}>2 Nov 2020 8:30-9:30</span>
+              <span className={styles.detailsLabel}>
+                {dateToString} | {eventStartTime}-{eventEndTime}
+              </span>
             </div>
           </div>
         </header>

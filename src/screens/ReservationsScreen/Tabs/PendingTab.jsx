@@ -78,6 +78,8 @@ export default function PendingTab({ forDepartment = false }) {
                     start_time: eventStartTime,
                     end_time: eventEndTime,
                     event_description: eventDescription,
+                    event_date: eventDate,
+                    room: roomId,
                     status,
                   }) => (
                     <ReservationCard
@@ -88,6 +90,8 @@ export default function PendingTab({ forDepartment = false }) {
                       eventEndTime={eventEndTime}
                       eventDescription={eventDescription}
                       status={status}
+                      eventDate={eventDate}
+                      roomId={roomId}
                     />
                   )
                 )}

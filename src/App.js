@@ -12,10 +12,13 @@ import PresidentWrapper from './screen-wrappers/PresidentWrapper';
 import ProvideAuth from './hocs/ProvideAuth';
 import PrivateRoute from './hocs/PrivateRoute';
 import { ReactQueryDevtools } from 'react-query-devtools';
+import { QueryCache, ReactQueryCacheProvider } from 'react-query';
+
+const queryCache = new QueryCache();
 
 export default function App() {
   return (
-    <>
+    <ReactQueryCacheProvider queryCache={queryCache}>
       <ProvideAuth>
         <Router>
           <Switch>
@@ -35,6 +38,6 @@ export default function App() {
         </Router>
       </ProvideAuth>
       <ReactQueryDevtools position="top-right" />
-    </>
+    </ReactQueryCacheProvider>
   );
 }

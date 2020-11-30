@@ -6,7 +6,7 @@ export default function StatusBadge({ status }) {
   let labelText = 'Pending';
 
   if (status === reservationStatusTypes.ACCEPTED) labelText = 'Accepted';
-  else if (status === reservationStatusTypes.PENDING) labelText = 'Pending';
+  else if (status === reservationStatusTypes.DECLINED) labelText = 'Declined';
 
   return (
     <div
