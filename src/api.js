@@ -19,6 +19,9 @@ export const getRooms = ({ buildingId, hasReservations } = {}) =>
 export const getUsers = ({ userType } = {}) =>
   axiosInstance.get('api/users/', { params: { user_type: userType } });
 
+export const getBuildings = () => axiosInstance.get('api/buildings/');
+
 export const reservationsKey = 'reservations';
 export const roomsKey = 'rooms';
 export const usersKey = 'users';
+export const buildingsKey = 'buildings';
