@@ -6,7 +6,6 @@ import NavItem from './NavItem';
 import CreateRoomModal from './Modals/CreateRoomModal';
 import TabContent from './Tabs/TabContent';
 
-import CreateDepartmentModal from './Modals/CreateDepartmentModal';
 import { userTypes } from '../../constants';
 
 export default function ReservationsScreen({ userType }) {
@@ -52,15 +51,13 @@ export default function ReservationsScreen({ userType }) {
         <main className={styles.mainContent}>
           <header className={styles.headerContent}>
             {!isUserDepartment && renderApproveLabel}
-            {!isUserDepartment && (
+            {!isUserDepartment && !isUserPresident && (
               <button
                 className={styles.createButton}
                 onClick={() => setIsModalOpen(true)}
               >
                 <AddIcon className={styles.createButtonIcon} fontSize="small" />
-                <span className={styles.createButtonLabel}>
-                  Create {isUserPresident ? 'Department' : 'Room'}
-                </span>
+                <span className={styles.createButtonLabel}>Create Room</span>
               </button>
             )}
           </header>
@@ -70,11 +67,7 @@ export default function ReservationsScreen({ userType }) {
           />
         </main>
       </div>
-      {isUserPresident ? (
-        <CreateDepartmentModal show={isModalOpen} setShow={setIsModalOpen} />
-      ) : (
-        <CreateRoomModal show={isModalOpen} setShow={setIsModalOpen} />
-      )}
+      <CreateRoomModal show={isModalOpen} setShow={setIsModalOpen} />
     </div>
   );
 }
