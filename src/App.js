@@ -37,7 +37,6 @@ export default function App() {
           </Switch>
         </Router>
       </ProvideAuth>
-      <ReactQueryDevtools position="top-right" />
     </ReactQueryCacheProvider>
   );
 }
