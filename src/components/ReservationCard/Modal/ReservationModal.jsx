@@ -6,7 +6,7 @@ import CalendarTodayOutlinedIcon from '@material-ui/icons/CalendarTodayOutlined'
 import styles from './styles.module.scss';
 import { reservationStatusTypes, userTypes } from '../../../constants';
 import { useQueryCache } from 'react-query';
-import axios, { buildingsKey, reservationsKey, roomsKey } from '../../../api';
+import axios, { buildingsKey, roomsKey } from '../../../api';
 import { useAuth } from '../../../auth';
 
 export default function ReservationModal({
