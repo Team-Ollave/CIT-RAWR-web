@@ -9,6 +9,15 @@ import { useQueryCache } from 'react-query';
 import axios, { buildingsKey, roomsKey } from '../../../api';
 import { useAuth } from '../../../auth';
 
+const createNotification = (userId, reservationId) => {
+  axios
+    .post('/api/notifications/', {
+      user: userId,
+      reservation: reservationId,
+    })
+    .catch((err) => console.error(err));
+};
+
 export default function ReservationModal({
   reservationId,
   show,
@@ -20,6 +29,7 @@ export default function ReservationModal({
   eventDate,
   eventStartTime,
   eventEndTime,
+  eventOrganizerId,
   roomId,
 }) {
   const {
@@ -37,8 +47,10 @@ export default function ReservationModal({
   const handleAccepted = () => {
     let data = { is_accepted_department: true };
     if (userType === userTypes.IMDC) data = { is_accepted_imdc: true };
-    else if (userType === userTypes.PRESIDENT)
+    else if (userType === userTypes.PRESIDENT) {
       data = { is_accepted_president: true };
+      createNotification(eventOrganizerId, reservationId);
+    }
 
     axios.patch(`api/reservations/${reservationId}/`, data);
     setShow(false);
@@ -47,9 +59,11 @@ export default function ReservationModal({
   const handleDecline = () => {
     let data = { is_accepted_department: false };
     if (userType === userTypes.IMDC) data = { is_accepted_imdc: false };
-    else if (userType === userTypes.PRESIDENT)
+    else if (userType === userTypes.PRESIDENT) {
       data = { is_accepted_president: false };
+    }
 
+    createNotification(eventOrganizerId, reservationId);
     axios.patch(`api/reservations/${reservationId}/`, data);
     setShow(false);
   };

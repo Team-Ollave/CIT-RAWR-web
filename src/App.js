@@ -11,7 +11,6 @@ import IMDCWrapper from './screen-wrappers/IMDCWrapper';
 import PresidentWrapper from './screen-wrappers/PresidentWrapper';
 import ProvideAuth from './hocs/ProvideAuth';
 import PrivateRoute from './hocs/PrivateRoute';
-import { ReactQueryDevtools } from 'react-query-devtools';
 import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 
 const queryCache = new QueryCache();

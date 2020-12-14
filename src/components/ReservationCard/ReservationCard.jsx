@@ -13,6 +13,7 @@ export default function ReservationCard({
   eventDescription,
   eventDate,
   roomId,
+  eventOrganizerId,
   handleOnClick,
 }) {
   const [showModal, setShowModal] = useState(false);
@@ -35,6 +36,7 @@ export default function ReservationCard({
         eventEndTime={eventEndTime}
         roomId={roomId}
         reservationId={reservationId}
+        eventOrganizerId={eventOrganizerId}
       />
 
       <div className={styles.reservationCard} onClick={handleOnClick2}>
